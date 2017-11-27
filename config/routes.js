@@ -45,27 +45,27 @@ module.exports.routes = {
   * for configuration options and examples.                                  *
   *                                                                          *
   ***************************************************************************/
-  'post /sign_in': 'AuthController.signIn',
-  'post /sign_up': 'AuthController.signUp',
+  'post /api/sign_in': 'AuthController.signIn',
+  'post /api/sign_up': 'AuthController.signUp',
 
-  'post /spu/push': 'MeasurementController.push',
-  'post /spu/confirm': 'ActionController.confirmActions',
-  'post /spu/heartbeat': 'ActuatorController.heartbeat',
+  'post /api/spu/push': 'MeasurementController.push',
+  'post /api/spu/confirm': 'ActionController.confirmActions',
+  'post /api/spu/heartbeat': 'ActuatorController.heartbeat',
 
-  'get /triggered-alarms': 'AlarmController.triggeredAlarms',
-  'post /fetch': 'FetchController.fetch',
+  'get /api/triggered-alarms': 'AlarmController.triggeredAlarms',
+  'post /api/fetch': 'FetchController.fetch',
 
-  'head /sensors/:name': 'SensorController.check',
+  'head /api/sensors/:name': 'SensorController.check',
 
-  'post /subscriptions': 'SubscriptionController.create',
-  'delete /subscriptions/:alarm': 'SubscriptionController.remove',
+  'post /api/subscriptions': 'SubscriptionController.create',
+  'delete /api/subscriptions/:alarm': 'SubscriptionController.remove',
 
-  'get /available-actuators': 'ActuatorController.findAvailable',
-  'get /alarms/:id/effects': 'AlarmController.findEffects',
-  'get /sensors/:id/errors': 'SensorController.findErrors',
-  'get /actuators/:id/errors': 'ActuatorController.findErrors',
-  'get /alarms': 'AlarmController.getAlarms',
-  'get /actuators/:id/history': 'ActuatorController.getHistory',
-  'get /alarms/:id/history': 'AlarmController.getHistory'
+  'get /api/available-actuators': 'ActuatorController.findAvailable',
+  'get /api/alarms/:id/effects': 'AlarmController.findEffects',
+  'get /api/sensors/:id/errors': 'SensorController.findErrors',
+  'get /api/actuators/:id/errors': 'ActuatorController.findErrors',
+  'get /api/alarms': 'AlarmController.getAlarms',
+  'get /api/actuators/:id/history': 'ActuatorController.getHistory',
+  'get /api/alarms/:id/history': 'AlarmController.getHistory'
 
 };

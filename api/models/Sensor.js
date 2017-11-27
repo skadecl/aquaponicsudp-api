@@ -63,11 +63,6 @@
      alarms: {
        collection: 'alarm',
        via: 'sensor'
-     },
-     //Relations
-     errors: {
-       collection: 'spuerror',
-       via: 'device'
      }
    },
 

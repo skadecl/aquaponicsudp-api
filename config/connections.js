@@ -48,15 +48,15 @@ module.exports.connections = {
   //   database: 'YOUR_MYSQL_DB' //optional
   // },
 
-  // mysql: {
-  //          adapter: 'sails-mysql',
-  //          host: '104.251.215.108',
-  //          user: 'aquaponics',
-  //          password: 'AquaponicsUDP17!',
-  //          database: 'aquaponics'
-  // }
-
   mysql: {
+           adapter: 'sails-mysql',
+           host: 'localhost',
+           user: 'aquaponics',
+           password: 'AquaponicsUDP17!',
+           database: 'aquaponics'
+  }
+
+  mysql_dev: {
            adapter: 'sails-mysql',
            host: 'localhost',
            user: 'root',
