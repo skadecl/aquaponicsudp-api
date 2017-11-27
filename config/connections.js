@@ -54,7 +54,7 @@ module.exports.connections = {
            user: 'aquaponics',
            password: 'AquaponicsUDP17!',
            database: 'aquaponics'
-  }
+  },
 
   mysql_dev: {
            adapter: 'sails-mysql',
