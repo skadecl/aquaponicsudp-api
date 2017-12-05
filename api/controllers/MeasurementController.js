@@ -88,18 +88,18 @@ module.exports = {
 												if (alarm.effects.length) {
 													effectIndex = 0
 													alarm.effects.forEach(function (effect) {
-														if (shouldTrigger && effect.status != effect.actuator.status) {
+														if (shouldTrigger && effect.status != effect.actuator.status && !effect.actuator.lock) {
 															actions.push({
 																actuator: effect.actuator.id,
-																status: effect.status,
-																confirmed: false
+																status: effect.status ? 1 : 0,
+																confirmed: 0
 															})
 														}
-														else if (!shouldTrigger && effect.status == effect.actuator.status) {
+														else if (!shouldTrigger && effect.status == effect.actuator.status && !effect.actuator.lock) {
 															actions.push({
 																actuator: effect.actuator.id,
-																status: !effect.status,
-																confirmed: false
+																status: !effect.status ? 1 : 0,
+																confirmed: 0
 															})
 														}
 														effectIndex++
@@ -115,10 +115,13 @@ module.exports = {
 													if (actions.length) {
 														//If got actions create them
 														Action.findOrCreate(actions).exec(function (err, createdActions) {
-															if (err) res.serverError();
+															if (err) {
+																res.serverError();
+																console.log(err);
+															}
 															else {
 																//Get new and old actions
-																Action.find({confirmed: false, attempts: { '<': sails.config.globals.maxActionAttempt }}).exec(function (err, allActions) {
+																Action.find({confirmed: 0, attempts: { '<': sails.config.globals.maxActionAttempt }}).exec(function (err, allActions) {
 																	if (err) res.serverError();
 																	else {
 																		allActions.forEach(function (action) {
@@ -126,7 +129,7 @@ module.exports = {
 																			action.save()
 																		})
 																		var pickedActions = _.map(allActions, _.partialRight(_.pick, ['id', 'actuator', 'status']))
-																		res.status(210).json(pickedActions)
+																				res.status(210).json(pickedActions)
 																	}
 																})
 															}
@@ -179,7 +182,7 @@ module.exports = {
 					}
 
 					if (req.body.errors) {
-						MeasurementError.create(req.body.errors).exec(function(err, errors){
+						SPUError.create(req.body.errors).exec(function(err, errors){
 							if (err) console.log(errors)
 						});
 					}

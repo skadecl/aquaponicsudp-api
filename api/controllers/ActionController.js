@@ -19,7 +19,9 @@ module.exports = {
 						else callback(null)
 					})
 				}, function (err) {
-					if (err) res.serverError()
+					if (err) {
+						res.serverError();
+					}
 					else res.ok()
 				})
 			}

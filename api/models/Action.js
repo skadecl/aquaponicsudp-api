@@ -17,7 +17,7 @@
        required: true
      },
      status: {
-       type: 'boolean',
+       type: 'integer',
        required: true
      },
      confirmed: {
