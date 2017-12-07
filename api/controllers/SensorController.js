@@ -23,5 +23,11 @@ module.exports = {
 			if (err) res.serverError();
 			else res.json(errors);
 		})
+	},
+
+	statistics: function(req, res) {
+		Measurement.query('SELECT value, sampledate AS name FROM measurements WHERE sensor = ?', req.params.id, function (err, results) {
+			res.json(results);
+		})
 	}
 };

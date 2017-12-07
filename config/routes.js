@@ -66,6 +66,7 @@ module.exports.routes = {
   'get /api/actuators/:id/errors': 'ActuatorController.findErrors',
   'get /api/alarms': 'AlarmController.getAlarms',
   'get /api/actuators/:id/history': 'ActuatorController.getHistory',
-  'get /api/alarms/:id/history': 'AlarmController.getHistory'
+  'get /api/alarms/:id/history': 'AlarmController.getHistory',
+  'post /api/sensors/:id/stats': 'SensorController.statistics'
 
 };

@@ -83,6 +83,12 @@ module.exports = {
 												if (alarm.triggered != shouldTrigger) {
 													alarm.triggered = shouldTrigger;
 													alarm.save();
+													var newTrigger = {
+														alarm: alarm.id,
+														type: shouldTrigger ? 1 : 0,
+														measurement: measurement.id
+													};
+													Trigger.create(newTrigger).exec(function(err, createdTrigger) {if (err) console.log(err)});
 												}
 
 												if (alarm.effects.length) {
@@ -117,7 +123,6 @@ module.exports = {
 														Action.findOrCreate(actions).exec(function (err, createdActions) {
 															if (err) {
 																res.serverError();
-																console.log(err);
 															}
 															else {
 																//Get new and old actions
