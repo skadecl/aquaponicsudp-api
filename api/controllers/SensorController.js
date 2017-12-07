@@ -25,9 +25,23 @@ module.exports = {
 		})
 	},
 
-	statistics: function(req, res) {
-		Measurement.query('SELECT value, sampledate AS name FROM measurements WHERE sensor = ?', req.params.id, function (err, results) {
-			res.json(results);
+	getHistory: function(req, res) {
+		var paginate = {
+			skip: 0,
+			limit: 10
+		}
+
+		if (req.query.limit) {
+			paginate.limit = ((req.query.limit-1) % sails.config.globals.maxPageResults) + 1;
+		}
+
+		if (req.query.page) {
+			paginate.skip = (req.query.page - 1) * paginate.limit;
+		}
+
+		Measurement.find({where: {sensor: req.params.id}, skip: paginate.skip, limit: paginate.limit, select: ['value', 'createdAt']}).sort('createdAt DESC').exec(function (err, actions) {
+			if (err) res.serverError();
+			else res.json(actions);
 		})
 	}
 };
