@@ -61,7 +61,7 @@ module.exports = {
 		}
 
 		if (req.query.limit) {
-			paginate.limit = req.query.limit % sails.config.globals.maxPageResults;
+			paginate.limit = ((req.query.limit-1) % sails.config.globals.maxPageResults) + 1;
 		}
 
 		if (req.query.page) {

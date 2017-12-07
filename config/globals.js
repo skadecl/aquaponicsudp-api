@@ -14,7 +14,7 @@ module.exports.globals = {
   authorizedSPUTokens: [
     'f9907db9ee752a989e850cb735b48bedcd4dd6333bc978e1503b9430b40cece4'
   ],
-  maxPageResults: 100
+  maxPageResults: 500
 
   /****************************************************************************
   *                                                                           *
